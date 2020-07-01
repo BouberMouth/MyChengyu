@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Localizable.plist
+   MyChengyu
+
+   Created by Antoine on 01/07/2020.
+   Copyright (c) 2020 BOUBERBOUCHE Antoine. All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+        <key>DEFAULT</key>
+        <dict>
+            <key>CANCEL</key>
+            <dict>
+                <key>value</key>
+                <string>Cancel</string>
+                <key>comment</key>
+                <string>- Default cancel -</string>
+            </dict>
+            <key>DELETE</key>
+            <dict>
+                <key>value</key>
+                <string>Delete</string>
+                <key>comment</key>
+                <string>- Default delete -</string>
+            </dict>
+            <key>FAVORITES</key>
+            <dict>
+                <key>value</key>
+                <string>Favorites</string>
+                <key>comment</key>
+                <string>- Default favorites -</string>
+            </dict>
+            <key>CHENGYU</key>
+            <dict>
+                <key>value</key>
+                <string>chengyu</string>
+                <key>comment</key>
+                <string>- Default translation for singular chengyu (lowercased) -</string>
+            </dict>
+            <key>CHENGYUS</key>
+            <dict>
+                <key>value</key>
+                <string>chengyus</string>
+                <key>comment</key>
+                <string>- Default translation for plural chengyu (lowercased) -</string>
+            </dict>
+            <key>OK</key>
+            <dict>
+                <key>value</key>
+                <string>Ok</string>
+                <key>comment</key>
+                <string>- Default translation Ok -</string>
+            </dict>
+        </dict>
+        <key>CONTACT</key>
+        <dict>
+            <key>REPORT_ISSUE</key>
+            <dict>
+                <key>CONTENT</key>
+                <dict>
+                    <key>value</key>
+                    <string>&lt;b&gt;What issue would you like to report ?&lt;/b&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;hr&gt;</string>
+                    <key>comment</key>
+                    <string>- html content of the email, must be contained between &lt;b&gt; and &lt;/b&gt;. -</string>
+                </dict>
+                <key>SUBJECT</key>
+                <dict>
+                    <key>value</key>
+                    <string>ISSUE: MyChengyu - iOS%version% - %location%</string>
+                    <key>comment</key>
+                    <string>- Subject of the report mail where %version% is a placeholder for a string containing the OS version and %S2% a placeholder for location in the app -</string>
+                </dict>
+            </dict>
+            <key>REPORT_MISSING_ENTRY</key>
+            <dict>
+                <key>CONTENT</key>
+                <dict>
+                    <key>value</key>
+                    <string>&lt;b&gt;What chengyu would you recommend us to add ?&lt;/b&gt;&lt;/br&gt;&lt;/br&gt;Chengyu: &lt;/br&gt;Pinyin: &lt;/br&gt;Definition: &lt;/br&gt;&lt;/br&gt;&lt;hr&gt;</string>
+                    <key>comment</key>
+                    <string>- html content of the email, question must be contained between &lt;b&gt; and &lt;/b&gt;. -</string>
+                </dict>
+                <key>SUBJECT</key>
+                <dict>
+                    <key>value</key>
+                    <string>MISSING ENTRY: MyChengyu - iOS%version%</string>
+                    <key>comment</key>
+                    <string>- Subject of the report mail where %version% is a placeholder for a string containing the OS version and %location% a placeholder for location in the app -</string>
+                </dict>
+            </dict>
+            <key>REPORT_INCORRECT_ENTRY</key>
+            <dict>
+                <key>CONTENT</key>
+                <dict>
+                    <key>value</key>
+                    <string>&lt;b&gt;Which entry would you like to report ?&lt;/b&gt;&lt;/b&gt;&lt;/br&gt;&lt;/br&gt;Chengyu: &lt;/br&gt;Pinyin: &lt;/br&gt;Definition: &lt;hr&gt;Please explain which part is incorrect : &lt;/br&gt;&lt;/br&gt;&lt;hr&gt;</string>
+                    <key>comment</key>
+                    <string>- html content of the email, question must be contained between &lt;b&gt; and &lt;/b&gt;. -</string>
+                </dict>
+                <key>SUBJECT</key>
+                <dict>
+                    <key>value</key>
+                    <string>INCORRECT ENTRY: MyChengyu - iOS%version%</string>
+                    <key>comment</key>
+                    <string>- Subject of the report mail where %version% is a placeholder for a string containing the OS version and %S2% a placeholder for location in the app -</string>
+                </dict>
+            </dict>
+            <key>SEND_FEEDBACK</key>
+            <dict>
+                <key>CONTENT</key>
+                <dict>
+                    <key>value</key>
+                    <string>&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;/br&gt;&lt;hr&gt;</string>
+                    <key>comment</key>
+                    <string>- html content of the email, must be contained between &lt;b&gt; and &lt;/b&gt;. -</string>
+                </dict>
+                <key>SUBJECT</key>
+                <dict>
+                    <key>value</key>
+                    <string>FEEDBACK: MyChengyu - iOS%version%</string>
+                    <key>comment</key>
+                    <string>- Subject of the report mail where %version% is a placeholder for a string containing the OS version and %S2% a placeholder for location in the app -</string>
+                </dict>
+            </dict>
+            <key>SUCCESS_ALERT</key>
+            <dict>
+                <key>TITLE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Thank you !</string>
+                    <key>comment</key>
+                    <string>- Title for success alert, thanking user -</string>
+                </dict>
+                <key>MESSAGE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Your message has been sent and we will read it very soon. Thank you for your contribution. 😊</string>
+                    <key>comment</key>
+                    <string>- Message for success alert -</string>
+                </dict>
+            </dict>
+        </dict>
+        <key>MORE</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>More...</string>
+                <key>comment</key>
+                <string>- Title for navigationController for More... -</string>
+            </dict>
+            <key>CONTACT_SECTION</key>
+            <dict>
+                <key>TITLE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Contact us</string>
+                    <key>comment</key>
+                    <string>- Label for contact section header -</string>
+                </dict>
+                <key>REPORT_ISSUE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Report an issue</string>
+                    <key>comment</key>
+                    <string>- Label for report issue option -</string>
+                </dict>
+                <key>MISSING_ENTRY</key>
+                <dict>
+                    <key>value</key>
+                    <string>Report missing entries</string>
+                    <key>comment</key>
+                    <string>- Label for report missing entries option -</string>
+                </dict>
+                <key>INCORRECT_ENTRY</key>
+                <dict>
+                    <key>value</key>
+                    <string>Report incorrect entries</string>
+                    <key>comment</key>
+                    <string>- Label for report incorrect entry option -</string>
+                </dict>
+                <key>FEEDBACK</key>
+                <dict>
+                    <key>value</key>
+                    <string>Send feedback</string>
+                    <key>comment</key>
+                    <string>- Label for report issue option -</string>
+                </dict>
+            </dict>
+            <key>GAME_SECTION</key>
+            <dict>
+                <key>TITLE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Game</string>
+                    <key>comment</key>
+                    <string>- Label for game section header -</string>
+                </dict>
+                <key>RESULTS</key>
+                <dict>
+                    <key>value</key>
+                    <string>Game results</string>
+                    <key>comment</key>
+                    <string>- Label for game results option -</string>
+                </dict>
+            </dict>
+            <key>REVIEW_SECTION</key>
+            <dict>
+                <key>TITLE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Review</string>
+                    <key>comment</key>
+                    <string>- Label for review section header -</string>
+                </dict>
+                <key>RATE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Rate the app</string>
+                    <key>comment</key>
+                    <string>- Label for rate app option -</string>
+                </dict>
+            </dict>
+        </dict>
+        <key>MENU</key>
+        <dict>
+            <key>COTD_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Today&apos;s chengyu :</string>
+                <key>comment</key>
+                <string>- Title for the chengyu of the day view -</string>
+            </dict>
+            <key>BROWSE</key>
+            <dict>
+                <key>value</key>
+                <string>Browse chengyus</string>
+                <key>comment</key>
+                <string>- Button title for going to dictionnary -</string>
+            </dict>
+            <key>DECKS</key>
+            <dict>
+                <key>value</key>
+                <string>Collections</string>
+                <key>comment</key>
+                <string>- Button title for going to decks -</string>
+            </dict>
+            <key>LEARN</key>
+            <dict>
+                <key>value</key>
+                <string>Learn</string>
+                <key>comment</key>
+                <string>- Button title for going to game -</string>
+            </dict>
+            <key>MORE</key>
+            <dict>
+                <key>value</key>
+                <string>More...</string>
+                <key>comment</key>
+                <string>- Button title for more -</string>
+            </dict>
+        </dict>
+        <key>DICTIONNARY</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Dictionnary</string>
+                <key>comment</key>
+                <string>- NavigationView&apos;s title -</string>
+            </dict>
+        </dict>
+        <key>CHENGYU_DETAILS</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Dictionnary</string>
+                <key>comment</key>
+                <string>- NavigationView&apos;s title -</string>
+            </dict>
+            <key>COPY_ALERT_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>What do you want to copy ?</string>
+                <key>comment</key>
+                <string>- Title for copy alertController -</string>
+            </dict>
+            <key>ADD_ALERT_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Which deck do you want to add this chengyu to ?</string>
+                <key>comment</key>
+                <string>- Title for add alertController -</string>
+            </dict>
+            <key>ADD_ALERT_OPTION_NEW_DECK</key>
+            <dict>
+                <key>value</key>
+                <string>New deck...</string>
+                <key>comment</key>
+                <string>- Label for add deck option in add alertController -</string>
+            </dict>
+        </dict>
+        <key>DECK_SELECTION</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Collections</string>
+                <key>comment</key>
+                <string>- NavigationController title -</string>
+            </dict>
+            <key>FAVORITES</key>
+            <dict>
+                <key>value</key>
+                <string>Favorites</string>
+                <key>comment</key>
+                <string>- Label for favorites deck -</string>
+            </dict>
+            <key>NEW_DECK_ALERT_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Create a new deck</string>
+                <key>comment</key>
+                <string>- Title of create new chengyu alert controller -</string>
+            </dict>
+            <key>NEW_DECK_ALERT_TEXTFIELD_PLACEHOLDER</key>
+            <dict>
+                <key>value</key>
+                <string>Name</string>
+                <key>comment</key>
+                <string>- Placeholder for new deck name textfield -</string>
+            </dict>
+            <key>NEW_DECK_ALERT_OPTION_CREATE</key>
+            <dict>
+                <key>value</key>
+                <string>Create</string>
+                <key>comment</key>
+                <string>- Create action label -</string>
+            </dict>
+        </dict>
+        <key>DECK_DETAILS</key>
+        <dict/>
+        <key>GAME_SETTINGS</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Learn</string>
+                <key>comment</key>
+                <string>- NavigationController title -</string>
+            </dict>
+            <key>START_BUTTON</key>
+            <dict>
+                <key>value</key>
+                <string>Start</string>
+                <key>comment</key>
+                <string>- Label for start game button -</string>
+            </dict>
+            <key>SELECT_DECK</key>
+            <dict>
+                <key>value</key>
+                <string>Select a deck to play with :</string>
+                <key>comment</key>
+                <string>- Deck selection header label -</string>
+            </dict>
+            <key>SELECT_LEVEL</key>
+            <dict>
+                <key>value</key>
+                <string>Select a difficulty :</string>
+                <key>comment</key>
+                <string>- Level selection header label -</string>
+            </dict>
+            <key>ALL_CHENGYUS</key>
+            <dict>
+                <key>value</key>
+                <string>All Chengyus</string>
+                <key>comment</key>
+                <string>- All chengyus deck title -</string>
+            </dict>
+            <key>ALERT_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Not enough chengyus...</string>
+                <key>comment</key>
+                <string>- Title for too few chengyus alert -</string>
+            </dict>
+            <key>ALERT_MESSAGE</key>
+            <dict>
+                <key>value</key>
+                <string>Please select a deck containing at least %INT% chengyus.</string>
+                <key>comment</key>
+                <string>- Message for too few chengyus alert indicating the minimum number of chengyu required. The number placeholder is %INT% -</string>
+            </dict>
+        </dict>
+        <key>GAME</key>
+        <dict>
+            <key>EXIT_ALERT_CONTINUE</key>
+            <dict>
+                <key>value</key>
+                <string>Continue</string>
+                <key>comment</key>
+                <string>- Label for continue option in exit alert -</string>
+            </dict>
+            <key>EXIT_ALERT_REPORT</key>
+            <dict>
+                <key>value</key>
+                <string>Report a bug</string>
+                <key>comment</key>
+                <string>- Label for report bug option in exit alert -</string>
+            </dict>
+            <key>EXIT_ALERT_EXIT</key>
+            <dict>
+                <key>value</key>
+                <string>Exit game</string>
+                <key>comment</key>
+                <string>- Label for exit option in exit alert -</string>
+            </dict>
+            <key>1BY1</key>
+            <dict>
+                <key>value</key>
+                <string>1 by 1</string>
+                <key>comment</key>
+                <string>- 1 by 1 level label -</string>
+            </dict>
+            <key>3BY3</key>
+            <dict>
+                <key>value</key>
+                <string>3 by 3</string>
+                <key>comment</key>
+                <string>- 3 by 3 level label -</string>
+            </dict>
+            <key>5BY5</key>
+            <dict>
+                <key>value</key>
+                <string>5 by 5</string>
+                <key>comment</key>
+                <string>- 5 by 5 level label -</string>
+            </dict>
+        </dict>
+        <key>GAME_RECORDS</key>
+        <dict>
+            <key>TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Scores</string>
+                <key>comment</key>
+                <string>- NavigtionView title for game records -</string>
+            </dict>
+            <key>DETAILS_ALERT_TITLE</key>
+            <dict>
+                <key>value</key>
+                <string>Details</string>
+                <key>comment</key>
+                <string>- Alert title for details -</string>
+            </dict>
+            <key>LIST_DATE_FORMAT</key>
+            <dict>
+                <key>value</key>
+                <string>MMMM d, yyyy</string>
+                <key>comment</key>
+                <string>- Formatter for date in the list view -</string>
+            </dict>
+            <key>DETAILS_DATE_FORMAT</key>
+            <dict>
+                <key>value</key>
+                <string>MMMM d, yyyy h:mm a</string>
+                <key>comment</key>
+                <string>- Formatter for date in the details view -</string>
+            </dict>
+            <key>DETAILS_PLACEHOLDER</key>
+            <dict>
+                <key>DATE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Date</string>
+                    <key>comment</key>
+                    <string>- Placeholder for date componant -</string>
+                </dict>
+                <key>DECK_NAME</key>
+                <dict>
+                    <key>value</key>
+                    <string>Deck</string>
+                    <key>comment</key>
+                    <string>- Placeholder for deck name componant -</string>
+                </dict>
+                <key>RIGHT_ANSWERS</key>
+                <dict>
+                    <key>value</key>
+                    <string>Right answers </string>
+                    <key>comment</key>
+                    <string>- Placeholder for right answers componant -</string>
+                </dict>
+                <key>WRONG_ANSWERS</key>
+                <dict>
+                    <key>value</key>
+                    <string>Wrong answers</string>
+                    <key>comment</key>
+                    <string>- Placeholder for wrongg answers componant -</string>
+                </dict>
+                <key>SCORE</key>
+                <dict>
+                    <key>value</key>
+                    <string>Score</string>
+                    <key>comment</key>
+                    <string>- Placeholder for score componant -</string>
+                </dict>
+            </dict>
+        </dict>
+    </dict>
+</plist>
