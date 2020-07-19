@@ -20,11 +20,12 @@ private class Localizator {
     }()
     
     func localize(_ key: String) -> String {
-        print(key)
+        print("FETCHING: |\(key)|, FOUND", terminator: " ")
         guard let localizedString = localizedDictionnary.value(forKeyPath: "\(key).value") as? String else {
             assertionFailure("Missing translation for key: \(key)")
             return ""
         }
+        print("|\(localizedString)|.")
         return localizedString
     }
 }
