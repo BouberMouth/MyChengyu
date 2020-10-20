@@ -68,7 +68,7 @@ fastlane/test_output
 ## Various settings
 
 ## Other
-MyChengyu/ChengyuList-EN.txt
+*.txt
 
 
 ### Xcode Patch ###
