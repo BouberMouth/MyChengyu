@@ -28,7 +28,7 @@ final class DeckDetailsVC: UIViewController {
         if let filter = filter {
             return chengyus?.filter {
                 $0.pinyin.folding(options: .diacriticInsensitive, locale: nil).lowercased().contains(filter) ||
-                    $0.chengyu.lowercased().contains(filter) ||
+                    $0.simpChengyu.lowercased().contains(filter) ||
                     $0.definitions.joined(separator: " ").folding(options: .diacriticInsensitive, locale: nil).lowercased().contains(filter)}
         } else {
             return chengyus

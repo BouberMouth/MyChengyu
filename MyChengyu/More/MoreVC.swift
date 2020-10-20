@@ -15,7 +15,8 @@ final class MoreVC: UITableViewController {
     let sectionNames = [
         String.localize(forKey: "MORE.CONTACT_SECTION.TITLE"),
         String.localize(forKey: "MORE.GAME_SECTION.TITLE"),
-        String.localize(forKey: "MORE.REVIEW_SECTION.TITLE")
+        String.localize(forKey: "MORE.REVIEW_SECTION.TITLE"),
+        "Pref"//String.localize(forKey: "MORE.PREFERENCES_SECTION.TITLE")
     ]
     
     let sections = [
@@ -30,6 +31,9 @@ final class MoreVC: UITableViewController {
             ],
             [
                 String.localize(forKey: "MORE.REVIEW_SECTION.RATE")
+            ],
+            [
+                "Character type"//String.localize(forKey: "MORE.PREFERENCES_SECTION.CHARACTER_TYPE")
             ]
     ]
     
@@ -50,12 +54,21 @@ final class MoreVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
         cell.textLabel?.text = sections[indexPath.section][indexPath.row]
         cell.textLabel?.textColor = .chengyuWhite
         cell.textLabel?.font = UIFont.roundedFont(ofSize: 24, weight: .regular)
         cell.backgroundColor = UIColor(named: "ChengyuBackground")
         cell.selectionStyle = .none
+        
+        if indexPath.section == 3, indexPath.row == 0 {
+            
+            let segmented = UISegmentedControl(items: ["Simp.", "Trad."])
+            segmented.selectedSegmentIndex = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "TRAD" ? 1 : 0
+            segmented.addTarget(self, action: #selector(charPrefDidChange(_:)), for: .valueChanged)
+            cell.accessoryView = segmented
+        }
         return cell
     }
     
@@ -141,5 +154,20 @@ extension MoreVC: MFMailComposeViewControllerDelegate  {
                 self.present(ac, animated: true)
             }
         }
+    }
+}
+
+
+extension MoreVC {
+//    @objc private func charPrefDidChange(_ sender: UISwitch) {
+//        let newValue = sender.isOn ? "TRAD" : "SIMP"
+//        UserDefaults.standard.setValue(newValue,
+//                                       forKey: UserDefaultsKeys.characterPreferenceKey)
+//    }
+    
+    @objc private func charPrefDidChange(_ sender: UISegmentedControl) {
+        let newValue = sender.selectedSegmentIndex == 1 ? "TRAD" : "SIMP"
+        UserDefaults.standard.setValue(newValue,
+                                       forKey: UserDefaultsKeys.characterPreferenceKey)
     }
 }

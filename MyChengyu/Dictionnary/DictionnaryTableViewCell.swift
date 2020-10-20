@@ -14,7 +14,7 @@ final class ChengyuTableViewCell: UITableViewCell {
     
     var chengyu: Chengyu? {
         didSet {
-            chengyuLabel.text = chengyu?.chengyu
+            chengyuLabel.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "SIMP" ? chengyu?.simpChengyu : chengyu?.tradChengyu
             pinyinLabel.text = chengyu?.pinyin
             definitionLabel.text = chengyu?.definitions.first
         }

@@ -48,14 +48,15 @@ struct Chengyu: CustomStringConvertible {
     
     //MARK: - Properties
     let index: Int
-    let chengyu: String
+    let simpChengyu: String
+    let tradChengyu: String
     let pinyin: String
     let definitions: [String]
     var isFavorite: Bool {
         return try! Realm().objects(Deck.self).first!.chengyuIndexes.contains(index)
     }
     var description: String {
-        return "\(index). \(chengyu) \(pinyin)\n\(definitions.joined(separator: "; "))\n\(isFavorite ? "Favorite" : "Not Favorite")"
+        return "\(index). \(simpChengyu)|\(tradChengyu) \(pinyin)\n\(definitions.joined(separator: "; "))\n\(isFavorite ? "Favorite" : "Not Favorite")"
     }
     
     //MARK: - Static methods
@@ -76,9 +77,10 @@ struct Chengyu: CustomStringConvertible {
         chengyuStrings.forEach { chengyuString in
             let components = chengyuString.components(separatedBy: "\n")
             let newChengyu = Chengyu(index: Int(components[0])!,
-                                     chengyu: components[1],
-                                     pinyin: components[3],
-                                     definitions: components[2].components(separatedBy: "; "))
+                                     simpChengyu: components[1],
+                                     tradChengyu: components[2],
+                                     pinyin: components[4],
+                                     definitions: components[3].components(separatedBy: "; "))
             decodedChengyus.append(newChengyu)
         }
         return decodedChengyus

@@ -41,7 +41,7 @@ final class ChengyuDetailsView: UIView {
     }
     
     func setModel(_ model: Chengyu?) {
-        chengyuLabel.text = model?.chengyu.replacingOccurrences(of: "|", with: "")
+        chengyuLabel.text = model?.simpChengyu.replacingOccurrences(of: "|", with: "")
         pinyinLabel.text = model?.pinyin
         if let formattedDefinitions = model?.definitions.map({"• " + $0}) {
             definitionTextView.text = "\n" + formattedDefinitions.joined(separator: "\n")

@@ -56,7 +56,7 @@ struct Game {
         for _ in 0..<level.intValue() {
             currentChengyus?.append(chengyus.remove(at: Int.random(in: 0..<chengyus.count)))
         }
-        answerComponents = Array(currentChengyus!.map({$0.chengyu}).joined()).shuffled()
+        answerComponents = Array(currentChengyus!.map({$0.simpChengyu}).joined()).shuffled()
         return didPrepareNormally
     }
     
@@ -64,7 +64,7 @@ struct Game {
      
      */
     mutating func submitAnswer(_ answer: String, forChengyuAtIndex index: Int) -> Bool {
-        if currentChengyus![index].chengyu == answer {
+        if currentChengyus![index].simpChengyu == answer {
             answeredChengyus.append(currentChengyus!.remove(at: index))
             return true
         } else {

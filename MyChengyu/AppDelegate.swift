@@ -47,5 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 realm.add(newDeck)
             }
         }
+        
+        if UserDefaults.standard.object(forKey: UserDefaultsKeys.characterPreferenceKey) == nil {
+            UserDefaults.standard.setValue("SIMP", forKey: UserDefaultsKeys.characterPreferenceKey)
+        }
+        
+        
     }
 }

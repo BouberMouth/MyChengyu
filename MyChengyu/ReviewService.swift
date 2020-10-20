@@ -13,6 +13,7 @@ struct UserDefaultsKeys {
     static let processCompletedCountKey = "processCompletedCount"
     static let lastVersionPromptedForReviewKey = "lastVersionPromptedForReview"
     static let newRecordIDKey = "newRecordID"
+    static let characterPreferenceKey = "characterPreference"
 }
 
 class ReviewService {

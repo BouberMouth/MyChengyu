@@ -115,8 +115,8 @@ final class ChengyuDetailsVC: UIViewController {
             preferredStyle: .actionSheet
         )
         
-        ac.addAction(UIAlertAction(title: chengyu.chengyu, style: .default, handler: { (action) in
-            UIPasteboard.general.string = chengyu.chengyu
+        ac.addAction(UIAlertAction(title: chengyu.simpChengyu, style: .default, handler: { (action) in
+            UIPasteboard.general.string = chengyu.simpChengyu
         }))
         ac.addAction(UIAlertAction(title: chengyu.pinyin, style: .default, handler: { (action) in
             UIPasteboard.general.string = chengyu.pinyin
