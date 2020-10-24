@@ -28,7 +28,7 @@ final class COTDView: UIView {
     }
     
     func setModel(_ model: Chengyu?) {
-        chengyuLabel.text = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "SIMP" ? model?.simpChengyu : model?.tradChengyu
+        chengyuLabel.text = model?.preferredForm()
         pinyinLabel.text = model?.pinyin
     }
     

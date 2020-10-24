@@ -9,40 +9,6 @@
 import Foundation
 import RealmSwift
 
-class Deck: Object {
-    
-    //MARK: - Properties
-    @objc dynamic var name: String = ""
-    var chengyuIndexes = List<Int>()
-    
-    
-    //MARK: - Methods
-    func setupDeck(name: String, chengyuIndexes: [Int]) {
-        self.name = name
-        for i in chengyuIndexes {
-            self.chengyuIndexes.append(i)
-        }
-    }
-    
-    func addChengyuIndex(_ index: Int?) {
-        if let index = index {
-            if !chengyuIndexes.contains(index) {
-                chengyuIndexes.append(index)
-            }
-        }
-    }
-    
-    //MARK: - Static Methods
-    static func createDeckWith(_ chengyus: [Chengyu]) -> Deck {
-        let newDeck = Deck()
-        newDeck.name = String.localize(forKey: "GAME_SETTINGS.ALL_CHENGYUS")
-        chengyus.forEach {
-            newDeck.addChengyuIndex($0.index)
-        }
-        return newDeck
-    }
-}
-
 
 struct Chengyu: CustomStringConvertible {
     
@@ -56,7 +22,16 @@ struct Chengyu: CustomStringConvertible {
         return try! Realm().objects(Deck.self).first!.chengyuIndexes.contains(index)
     }
     var description: String {
-        return "\(index). \(simpChengyu)|\(tradChengyu) \(pinyin)\n\(definitions.joined(separator: "; "))\n\(isFavorite ? "Favorite" : "Not Favorite")"
+        return "\(index). \(preferredForm()) \(pinyin)\n\(definitions.joined(separator: "; "))\n\(isFavorite ? "Favorite" : "Not Favorite")"
+    }
+    
+    func preferredForm() -> String {
+        if UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "SIMP" {
+            return simpChengyu
+        } else {
+            return tradChengyu
+        }
+            
     }
     
     //MARK: - Static methods
@@ -96,31 +71,3 @@ struct Chengyu: CustomStringConvertible {
         
     }
 }
-
-
-class GameRecord: Object {
-    @objc dynamic var id = 0
-    @objc dynamic var date = Date()
-    @objc dynamic var deckName = ""
-    @objc dynamic var deckCount = 0
-    @objc dynamic var goodAnswers = 0
-    @objc dynamic var wrongAnswers = 0
-    
-    var score: Double {
-        return round((Double(goodAnswers) / Double(goodAnswers + wrongAnswers))*1000) / 10
-    }
-    
-    func initialize(deckName: String, deckCount: Int, goodAnswers: Int, wrongAnswers: Int) {
-        let uniqueID = UserDefaults.standard.integer(forKey: UserDefaultsKeys.newRecordIDKey)
-        self.id = uniqueID
-        UserDefaults.standard.set(uniqueID + 1, forKey: UserDefaultsKeys.newRecordIDKey)
-        
-        self.deckName = deckName
-        self.deckCount = deckCount
-        self.goodAnswers = goodAnswers
-        self.wrongAnswers = wrongAnswers
-        
-        print(self)
-    }
-}
-
