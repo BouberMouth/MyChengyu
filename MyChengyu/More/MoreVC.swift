@@ -16,7 +16,7 @@ final class MoreVC: UITableViewController {
         String.localize(forKey: "MORE.CONTACT_SECTION.TITLE"),
         String.localize(forKey: "MORE.GAME_SECTION.TITLE"),
         String.localize(forKey: "MORE.REVIEW_SECTION.TITLE"),
-        "Pref"//String.localize(forKey: "MORE.PREFERENCES_SECTION.TITLE")
+        String.localize(forKey: "MORE.PREFERENCES_SECTION.TITLE")
     ]
     
     let sections = [
@@ -33,7 +33,7 @@ final class MoreVC: UITableViewController {
                 String.localize(forKey: "MORE.REVIEW_SECTION.RATE")
             ],
             [
-                "Character type"//String.localize(forKey: "MORE.PREFERENCES_SECTION.CHARACTER_TYPE")
+                String.localize(forKey: "MORE.PREFERENCES_SECTION.CHARACTERS")
             ]
     ]
     
@@ -64,7 +64,9 @@ final class MoreVC: UITableViewController {
         
         if indexPath.section == 3, indexPath.row == 0 {
             
-            let segmented = UISegmentedControl(items: ["Simp.", "Trad."])
+            let segmented = UISegmentedControl(items: [
+                                                String.localize(forKey: "DEFAULT.SIMPLIFIED_SH"),
+                                                String.localize(forKey: "DEFAULT.TRADITIONAL_SH")])
             segmented.selectedSegmentIndex = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "TRAD" ? 1 : 0
             segmented.addTarget(self, action: #selector(charPrefDidChange(_:)), for: .valueChanged)
             cell.accessoryView = segmented
