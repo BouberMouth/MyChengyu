@@ -8,3 +8,10 @@ MyChengyu helps you learn Chinese idioms, called chengyus, which are most of the
   <img src="img/collection.png" width=50%>
   <img src="img/game.png" width=50%>
 </p>
+
+# Upcoming features
+- Character type choice (Traditional - Simplified)
+- French language localization
+- Menu UI refactoring
+- Widgets
+- Flashcards
