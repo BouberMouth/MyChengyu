@@ -15,3 +15,4 @@ MyChengyu helps you learn Chinese idioms, called chengyus, which are most of the
 - Menu UI refactoring
 - Widgets
 - Flashcards
+_ Apple watch extension
