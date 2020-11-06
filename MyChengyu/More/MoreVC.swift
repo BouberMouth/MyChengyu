@@ -10,7 +10,13 @@ import UIKit
 import MessageUI
 import StoreKit
 
+protocol MoreVCDelegate {
+    func reloadView()
+}
+
 final class MoreVC: UITableViewController {
+    
+    var delegate: MoreVCDelegate?
     
     let sectionNames = [
         String.localize(forKey: "MORE.CONTACT_SECTION.TITLE"),
@@ -171,5 +177,6 @@ extension MoreVC {
         let newValue = sender.selectedSegmentIndex == 1 ? "TRAD" : "SIMP"
         UserDefaults.standard.setValue(newValue,
                                        forKey: UserDefaultsKeys.characterPreferenceKey)
+        delegate?.reloadView()
     }
 }

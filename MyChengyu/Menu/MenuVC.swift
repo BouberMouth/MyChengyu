@@ -132,3 +132,11 @@ extension MenuVC: MFMailComposeViewControllerDelegate  {
         }
     }
 }
+
+extension MenuVC: MoreVCDelegate {
+    func reloadView() {
+        menuView = MenuView(frame: menuView.frame)
+    }
+    
+    
+}
