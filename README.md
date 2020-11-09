@@ -6,7 +6,7 @@ MyChengyu helps you learn Chinese idioms, called chengyus, which are most of the
 
 # Upcoming features
 - Character type choice (Traditional - Simplified) ✅
-- French language localization
+- French language localization ✅
 - Menu UI refactoring
 - Widgets
 - Flashcards
