@@ -14,7 +14,10 @@ final class MenuVC: UIViewController {
     //MARK: - Properties
     
     let allChengyus = Chengyu.decodeChengyuFromTxtFile("ChengyuList-EN")
-    lazy var cotd = Chengyu.chengyuOfTheDayIn(allChengyus)
+    var cotd: Chengyu? {
+        Chengyu.chengyuOfTheDayIn(allChengyus)
+    }
+
     let menuTitles = [
         String.localize(forKey: "MENU.BROWSE"),
         String.localize(forKey: "MENU.DECKS"),
@@ -40,6 +43,7 @@ final class MenuVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.tintColor = .chengyuWhite
@@ -79,7 +83,9 @@ final class MenuVC: UIViewController {
     
     @objc private func didTapMore() {
         let nextVC = MoreVC()
-        navigationController?.pushViewController(nextVC, animated: true)
+        nextVC.delegate = self
+        present(nextVC, animated: true)
+        //navigationController?.pushViewController(nextVC, animated: true)
     }
     
     private func setupGestureRecognizers() {
@@ -100,43 +106,12 @@ final class MenuVC: UIViewController {
     }
 }
 
-extension MenuVC: MFMailComposeViewControllerDelegate  {
-    
-    func sendReportEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            
-            let content = "<b>What issue would you like to report ?</b>"
-            mail.setMessageBody(content, isHTML: true)
-            
-            mail.setToRecipients(["a.bouberbouche@gmail.com"])
-            
-            let version = UIDevice.current.systemVersion
-            mail.setSubject("REPORT: MyChengyu - iOS\(version)")
-
-            present(mail, animated: true)
-        } else {
-            print("Unable to send emails...")
-        }
-    }
-
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true) {
-            if result == .sent {
-                let ac = UIAlertController(title: "Thank you !", message: "Your message has been sent and we will read it very soon. Thank you for your help. 😊", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(ac, animated: true)
-            }
-        }
-    }
-}
-
 extension MenuVC: MoreVCDelegate {
     func reloadView() {
         menuView = MenuView(frame: menuView.frame)
+        menuView.setModel(cotd)
+        menuView.buttonsNames = menuTitles
+        setupGestureRecognizers()
+        view = menuView
     }
-    
-    
 }

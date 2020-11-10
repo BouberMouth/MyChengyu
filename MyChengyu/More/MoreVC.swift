@@ -14,7 +14,9 @@ protocol MoreVCDelegate {
     func reloadView()
 }
 
-final class MoreVC: UITableViewController {
+final class MoreVC: UIViewController {
+    
+    var moreView: MoreView!
     
     var delegate: MoreVCDelegate?
     
@@ -43,65 +45,28 @@ final class MoreVC: UITableViewController {
             ]
     ]
     
+    override func loadView() {
+        super.loadView()
+        moreView = MoreView(frame: view.frame)
+        view = moreView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor(named: "ChengyuBackground")
+        moreView.tableView.backgroundColor = UIColor(named: "ChengyuBackground")
         title = String.localize(forKey: "MORE.TITLE")
-        tableView.separatorColor = UIColor.chengyuWhite.withAlphaComponent(0.25)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        moreView.tableView.separatorColor = UIColor.chengyuWhite.withAlphaComponent(0.25)
+        moreView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
+        moreView.tableView.delegate = self
+        moreView.tableView.dataSource = self
+        moreView.setFoldButtonAction(target: self, action: #selector(fold))
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+    @objc func fold() {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
-        cell.textLabel?.text = sections[indexPath.section][indexPath.row]
-        cell.textLabel?.textColor = .chengyuWhite
-        cell.textLabel?.font = UIFont.roundedFont(ofSize: 24, weight: .regular)
-        cell.backgroundColor = UIColor(named: "ChengyuBackground")
-        cell.selectionStyle = .none
-        
-        if indexPath.section == 3, indexPath.row == 0 {
-            
-            let segmented = UISegmentedControl(items: [
-                                                String.localize(forKey: "DEFAULT.SIMPLIFIED_SH"),
-                                                String.localize(forKey: "DEFAULT.TRADITIONAL_SH")])
-            segmented.selectedSegmentIndex = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "TRAD" ? 1 : 0
-            segmented.addTarget(self, action: #selector(charPrefDidChange(_:)), for: .valueChanged)
-            cell.accessoryView = segmented
-        }
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 32))
-        let label = UILabel(frame: CGRect(x: 8, y: 8, width: tableView.frame.width - 16, height: 24))
-        label.textColor = .chengyuWhite
-        label.font = UIFont.roundedFont(ofSize: 17, weight: .regular)
-        label.layer.borderColor = UIColor.chengyuWhite.cgColor
-        label.layer.borderWidth = 1
-        label.textAlignment = .center
-        label.layer.cornerRadius = label.frame.height / 2
-        label.text = sectionNames[section]
-        
-        view.addSubview(label)
-        view.backgroundColor = UIColor(named: "ChengyuBackground")
-        return view
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        return footer
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let contactCases = ContactCase.allCases()
             sendReportEmail(reason: contactCases[indexPath.row])
@@ -166,12 +131,63 @@ extension MoreVC: MFMailComposeViewControllerDelegate  {
 }
 
 
+extension MoreVC: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+        cell.textLabel?.text = sections[indexPath.section][indexPath.row]
+        cell.textLabel?.textColor = .chengyuWhite
+        cell.textLabel?.font = UIFont.roundedFont(ofSize: 24, weight: .regular)
+        cell.backgroundColor = UIColor(named: "ChengyuBackground")
+        cell.selectionStyle = .none
+        
+        if indexPath.section == 3, indexPath.row == 0 {
+            
+            let segmented = UISegmentedControl(items: [
+                                                String.localize(forKey: "DEFAULT.SIMPLIFIED_SH"),
+                                                String.localize(forKey: "DEFAULT.TRADITIONAL_SH")])
+            segmented.selectedSegmentIndex = UserDefaults.standard.string(forKey: UserDefaultsKeys.characterPreferenceKey) == "TRAD" ? 1 : 0
+            segmented.addTarget(self, action: #selector(charPrefDidChange(_:)), for: .valueChanged)
+            cell.accessoryView = segmented
+        }
+        return cell
+    }
+}
+
+extension MoreVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 32))
+        let label = UILabel(frame: CGRect(x: 8, y: 8, width: tableView.frame.width - 16, height: 24))
+        label.textColor = .chengyuWhite
+        label.font = UIFont.roundedFont(ofSize: 17, weight: .regular)
+        label.layer.borderColor = UIColor.chengyuWhite.cgColor
+        label.layer.borderWidth = 1
+        label.textAlignment = .center
+        label.layer.cornerRadius = label.frame.height / 2
+        label.text = sectionNames[section]
+        
+        view.addSubview(label)
+        view.backgroundColor = UIColor(named: "ChengyuBackground")
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        return footer
+    }
+}
+
 extension MoreVC {
-//    @objc private func charPrefDidChange(_ sender: UISwitch) {
-//        let newValue = sender.isOn ? "TRAD" : "SIMP"
-//        UserDefaults.standard.setValue(newValue,
-//                                       forKey: UserDefaultsKeys.characterPreferenceKey)
-//    }
     
     @objc private func charPrefDidChange(_ sender: UISegmentedControl) {
         let newValue = sender.selectedSegmentIndex == 1 ? "TRAD" : "SIMP"
