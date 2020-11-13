@@ -21,34 +21,39 @@ final class MoreVC: UIViewController {
     var delegate: MoreVCDelegate?
     
     let sectionNames = [
-        String.localize(forKey: "MORE.CONTACT_SECTION.TITLE"),
+        String.localize(forKey: "MORE.PREFERENCES_SECTION.TITLE"),
         String.localize(forKey: "MORE.GAME_SECTION.TITLE"),
-        String.localize(forKey: "MORE.REVIEW_SECTION.TITLE"),
-        String.localize(forKey: "MORE.PREFERENCES_SECTION.TITLE")
+        String.localize(forKey: "MORE.CONTACT_SECTION.TITLE"),
+        String.localize(forKey: "MORE.REVIEW_SECTION.TITLE")
     ]
     
     let sections = [
-            [
-                String.localize(forKey: "MORE.CONTACT_SECTION.REPORT_ISSUE"),
-                String.localize(forKey: "MORE.CONTACT_SECTION.MISSING_ENTRY"),
-                String.localize(forKey: "MORE.CONTACT_SECTION.INCORRECT_ENTRY"),
-                String.localize(forKey: "MORE.CONTACT_SECTION.FEEDBACK")
-            ],
-            [
-                String.localize(forKey: "MORE.GAME_SECTION.RESULTS")
-            ],
-            [
-                String.localize(forKey: "MORE.REVIEW_SECTION.RATE")
-            ],
-            [
-                String.localize(forKey: "MORE.PREFERENCES_SECTION.CHARACTERS")
-            ]
+        [
+            String.localize(forKey: "MORE.PREFERENCES_SECTION.CHARACTERS")
+        ],
+        [
+            String.localize(forKey: "MORE.GAME_SECTION.RESULTS")
+        ],
+        [
+            String.localize(forKey: "MORE.CONTACT_SECTION.REPORT_ISSUE"),
+            String.localize(forKey: "MORE.CONTACT_SECTION.MISSING_ENTRY"),
+            String.localize(forKey: "MORE.CONTACT_SECTION.INCORRECT_ENTRY"),
+            String.localize(forKey: "MORE.CONTACT_SECTION.FEEDBACK")
+        ],
+        [
+            String.localize(forKey: "MORE.REVIEW_SECTION.RATE")
+        ]
     ]
     
     override func loadView() {
         super.loadView()
         moreView = MoreView(frame: view.frame)
         view = moreView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -64,18 +69,6 @@ final class MoreVC: UIViewController {
     
     @objc func fold() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            let contactCases = ContactCase.allCases()
-            sendReportEmail(reason: contactCases[indexPath.row])
-        } else if indexPath.section == 1 {
-            let nextVC = GameRecordsVC()
-            navigationController?.pushViewController(nextVC, animated: true)
-        } else if indexPath.section == 2 {
-            ReviewService.shared.requestReviewManually()
-        }
     }
 }
 
@@ -150,7 +143,7 @@ extension MoreVC: UITableViewDataSource {
         cell.backgroundColor = UIColor(named: "ChengyuBackground")
         cell.selectionStyle = .none
         
-        if indexPath.section == 3, indexPath.row == 0 {
+        if indexPath.section == 0, indexPath.row == 0 {
             
             let segmented = UISegmentedControl(items: [
                                                 String.localize(forKey: "DEFAULT.SIMPLIFIED_SH"),
@@ -184,6 +177,21 @@ extension MoreVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
         return footer
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            // Do Nothing
+        } else if indexPath.section == 1 {
+            let nextVC = GameRecordsVC()
+            nextVC.hideNavbar = true
+            navigationController?.pushViewController(nextVC, animated: true)
+        } else if indexPath.section == 2 {
+            let contactCases = ContactCase.allCases()
+            sendReportEmail(reason: contactCases[indexPath.row])
+        } else if indexPath.section == 3 {
+            ReviewService.shared.requestReviewManually()
+        }
     }
 }
 

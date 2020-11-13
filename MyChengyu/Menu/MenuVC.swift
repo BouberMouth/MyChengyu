@@ -84,7 +84,8 @@ final class MenuVC: UIViewController {
     @objc private func didTapMore() {
         let nextVC = MoreVC()
         nextVC.delegate = self
-        present(nextVC, animated: true)
+        let nextNav = UINavigationController(rootViewController: nextVC)
+        present(nextNav, animated: true)
         //navigationController?.pushViewController(nextVC, animated: true)
     }
     

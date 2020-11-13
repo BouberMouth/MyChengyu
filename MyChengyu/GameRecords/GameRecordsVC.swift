@@ -15,6 +15,8 @@ final class GameRecordsVC: UITableViewController {
     lazy var records: Results<GameRecord> = {
         realm.objects(GameRecord.self)
     }()
+    
+    var hideNavbar = false
 
     var newRecordID: Int = -1
     
@@ -24,7 +26,7 @@ final class GameRecordsVC: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellID")
         tableView.separatorColor = UIColor.chengyuWhite.withAlphaComponent(0.25)
         title = String.localize(forKey: "GAME_RECORDS.TITLE")
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isHidden = hideNavbar
         navigationItem.leftBarButtonItem = UIBarButtonItem()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(backToMenu))
     }
